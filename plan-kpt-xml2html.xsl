@@ -89,7 +89,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 	<!-- Построение дерева документа -->		
 	<xsl:template match="/">
 		<xsl:comment>Данный файл сгенерирован с помощью xslt преобразования shemeKpt2html.xsl</xsl:comment>
-		<xsl:comment>https://sourceforge.net/projects/sheme-kpt-xml2html/</xsl:comment>
+		<xsl:comment>https://sourceforge.net/projects/plan-kpt-xml2html</xsl:comment>
 		<html lang="ru" xml:lang="ru" xmlns="http://www.w3.org/1999/xhtml">
 			<head>
 				<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>				
