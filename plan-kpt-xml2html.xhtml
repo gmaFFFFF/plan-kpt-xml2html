@@ -1,0 +1,247 @@
+<!--MIT License
+
+Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+Текст лицензии на русском языке.
+Ограничение перевода: Это неофициальный перевод,
+он взят с сайта: http://licenseit.ru/wiki/index.php/MIT_License
+В случаях любого несоответствия перевода исходному тексту лицензии
+на английском языке верным считается текст на английском языке.
+
+Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
+
+Данная лицензия разрешает, безвозмездно, лицам, получившим копию данного программного
+обеспечения и сопутствующей документации (в дальнейшем именуемыми "Программное Обеспечение"),
+использовать Программное Обеспечение без ограничений, включая неограниченное право
+на использование, копирование, изменение, объединение, публикацию, распространение,
+сублицензирование и/или продажу копий Программного Обеспечения, также как и лицам,
+которым предоставляется данное Программное Обеспечение, при соблюдении следующих условий:
+
+Вышеупомянутый копирайт и данные условия должны быть включены во все копии
+или значимые части данного Программного Обеспечения.
+
+ДАННОЕ ПРОГРАММНОЕ ОБЕСПЕЧЕНИЕ ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ ЛЮБОГО ВИДА ГАРАНТИЙ,
+ЯВНО ВЫРАЖЕННЫХ ИЛИ ПОДРАЗУМЕВАЕМЫХ, ВКЛЮЧАЯ, НО НЕ ОГРАНИЧИВАЯСЬ ГАРАНТИЯМИ ТОВАРНОЙ
+ПРИГОДНОСТИ, СООТВЕТСТВИЯ ПО ЕГО КОНКРЕТНОМУ НАЗНАЧЕНИЮ И НЕНАРУШЕНИЯ ПРАВ.
+НИ В КАКОМ СЛУЧАЕ АВТОРЫ ИЛИ ПРАВООБЛАДАТЕЛИ НЕ НЕСУТ ОТВЕТСТВЕННОСТИ
+ПО ИСКАМ О ВОЗМЕЩЕНИИ УЩЕРБА, УБЫТКОВ ИЛИ ДРУГИХ ТРЕБОВАНИЙ ПО ДЕЙСТВУЮЩИМ КОНТРАКТАМ,
+ДЕЛИКТАМ ИЛИ ИНОМУ, ВОЗНИКШИМ ИЗ, ИМЕЮЩИМ ПРИЧИНОЙ ИЛИ СВЯЗАННЫМ С ПРОГРАММНЫМ
+ОБЕСПЕЧЕНИЕМ ИЛИ ИСПОЛЬЗОВАНИЕМ ПРОГРАММНОГО ОБЕСПЕЧЕНИЯ
+ИЛИ ИНЫМИ ДЕЙСТВИЯМИ С ПРОГРАММНЫМ ОБЕСПЕЧЕНИЕМ. -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="ru" xml:lang="ru" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+    <title>Схема расположения земельных участков на КПТ
+    </title>
+    <link href="http://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet" type="text/css"/>
+    <style type="text/css">/*<![CDATA[*/
+    @page {
+        /*настройки полей страницы для печати*/
+        margin: 2cm 2cm 2cm 3cm;
+    }
+
+    @media print {
+        .tool {
+            display: none;
+        }
+    }
+
+    * { /*Шрифт всего документа*/
+        font-family: 'PT Serif', serif;
+    }
+
+    table {
+        border-collapse: collapse; /*убираем пустые промежутки между ячейками*/
+        width: 100%; /* Ширина таблицы */
+    }
+
+    tbody.utv > tr > th { /*Шрифт строки утверждаю*/
+        font-size: larger;
+        font-weight: bold;
+    }
+
+    tbody.utv > tr > td:first-child { /*Гриф утверждаю занимает 70% ширины страницы*/
+        width: 30%;
+    }
+
+    tbody.utv > tr > td:last-child { /*Проводить нижнюю границу в строчках грифа утверждаю */
+        border-bottom: 1px solid black;
+    }
+
+    tbody.utv > tr > td.prim { /*Поясняющие надписи в грифе утверждаю*/
+        font-size: smaller;
+        border-bottom: none;
+    }
+
+    tbody.utv > tr:last-child td { /*Не проводить нижнюю границу в последней строке грифа утверждаю*/
+        border-bottom: none;
+    }
+
+    tbody.date > tr > td:nth-child(even) { /*Нижняя граница для ввода даты и номера*/
+        text-align: center;
+        border-bottom: 1px solid black;
+        width: 48%;
+    }
+
+    h3 {
+        text-align: center;
+        margin: 4ex 0 2ex 0;
+    }
+
+    table.parcel {
+        border: 2px solid black; /*Внешняя граница*/
+    }
+
+    table.parcel th, table.parcel td {
+        border: 1px solid black; /*Внутренние границы*/
+    }
+
+    table.parcel td:nth-child(n+2) { /*Одинаковая ширина столбца для ввода координат*/
+        width: 40%;
+    }
+
+    table.coord td {
+        text-align: center;
+    }
+
+    td.min, th.min { /*Хук для задания минимально возможной ширины столбца*/
+        width: 1%;
+        white-space: nowrap;
+    }
+
+    /*]]>*/</style>
+</head>
+<body>
+<div class="tool">
+    <p>Выбирай xml файл с СРЗУ на КПТ. Каталог сгенирируется автоматически.</p>
+    <p>Не переживай, при печати данная панель будет скрыта. </p>
+    <input type="file" accept="application/xml" id="planXml" onchange="fileOnChange()"/>
+    <p>P.s. Не забудь отключить колонтитлы при печати.</p>
+    <p>p.p.s. Содержание грифа утверждаю жестко закодировано.</p>
+</div>
+<div id="result">
+
+
+</div>
+<script type="text/javascript">
+    <![CDATA[
+    // Полифил для метода append()
+    // Source: https://developer.mozilla.org/ru/docs/Web/API/ParentNode/append
+    (function (arr) {
+        arr.forEach(function (item) {
+            if (item.hasOwnProperty('append')) {
+                return;
+            }
+            Object.defineProperty(item, 'append', {
+                configurable: true,
+                enumerable: true,
+                writable: true,
+                value: function append() {
+                    var argArr = Array.prototype.slice.call(arguments),
+                        docFrag = document.createDocumentFragment();
+
+                    argArr.forEach(function (argItem) {
+                        var isNode = argItem instanceof Node;
+                        docFrag.appendChild(isNode ? argItem : document.createTextNode(String(argItem)));
+                    });
+
+                    this.appendChild(docFrag);
+                }
+            });
+        });
+    })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
+
+    function loadXMLDoc(file_name) {
+        let xhttp;
+        //IE
+        if (window.ActiveXObject || "ActiveXObject" in window) {
+            xhttp = new ActiveXObject("Msxml2.XMLHTTP.6.0");
+        }
+        else {
+            xhttp = new XMLHttpRequest();
+        }
+        xhttp.open("GET", file_name, false);
+        xhttp.send("");
+        return xhttp.responseXML;
+    }
+
+    function transformXml(plan_xml) {
+        let xsl = loadXMLDoc("plan-kpt-xml2html.xsl");
+        let result;
+        // code for IE
+        if (window.ActiveXObject || "ActiveXObject" in window) {
+            text = plan_xml.transformNode(xsl);
+            result = new DOMParser().parseFromString(text, "application/xml");
+
+        }
+        // code for Chrome, Firefox, Opera, etc.
+        else if (document.implementation && document.implementation.createDocument) {
+            let xsltProcessor = new XSLTProcessor();
+            xsltProcessor.importStylesheet(xsl);
+            result = xsltProcessor.transformToDocument(plan_xml);
+        }
+        return result;
+    }
+
+    function transformPlan(plan_xml, result_elem_id) {
+        let target = document.getElementById(result_elem_id);
+        target.textContent = '';
+        let result = transformXml(plan_xml);
+        let sel = result.body.childNodes;
+        let len = sel.length;
+        for (let i = 0; i < len; i++) {
+            target.append(sel[0]);
+        }
+    }
+
+    function fileOnChange() {
+        let plan_file = document.getElementById('planXml').files[0];
+        let reader = new FileReader();
+
+        reader.readAsText(plan_file);
+
+        reader.onload = function () {
+            let plan_xml;
+
+            //IE
+            if (window.ActiveXObject || "ActiveXObject" in window) {
+                plan_xml = new ActiveXObject('Msxml2.DOMDocument.6.0');
+                plan_xml.async = false;
+                plan_xml.loadXML(reader.result);
+            }
+            else
+                plan_xml = new DOMParser().parseFromString(reader.result, "application/xml");
+
+            transformPlan(plan_xml, "result");
+        };
+
+        reader.onerror = function () {
+            console.log(reader.error);
+
+        };
+    }
+
+    ]]>
+</script>
+</body>
+</html>
