@@ -95,7 +95,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 				<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>				
 				<title>Схема расположения земельных участков на КПТ
 				</title>
-				<link href='http://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css' />
+				<link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css' />
 				<style type="text/css">					
 					<xsl:text disable-output-escaping="yes">/*<![CDATA[*/					
                     @page {
