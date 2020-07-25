@@ -219,7 +219,9 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 										<tr>
 											<td class="min">от</td>
 											<td>
-												<xsl:value-of select="$date_full"/>
+												<xsl:if test="boolean($date/text())">
+													<xsl:value-of select="$date_full"/>
+												</xsl:if>
 											</td>
 											<td class="min">№</td>
 											<td>
