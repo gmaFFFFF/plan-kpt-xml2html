@@ -246,7 +246,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 							</tr>
 							<tr>
 								<td>
-									<b>Площадь: </b>
+									<b>Площадь земельного участка: </b>
 									<xsl:value-of select="format-number(Area/Area,'#&nnbsp;###,#','coord')"/>
                                     кв.&nnbsp;м
                                 </td>
