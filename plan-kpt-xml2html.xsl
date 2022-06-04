@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--MIT License
 
-Copyright © 2020 Гршикин Максим (FFFFF@bk.ru) 
+Copyright © 2020 Гришкин Максим (FFFFF@bk.ru) 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -92,7 +92,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 		<xsl:comment>https://sourceforge.net/projects/plan-kpt-xml2html</xsl:comment>
 		<html lang="ru" xml:lang="ru" xmlns="http://www.w3.org/1999/xhtml">
 			<head>
-				<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>				
+				<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>				
 				<title>Схема расположения земельных участков на КПТ
 				</title>
 				<link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css' />
@@ -181,7 +181,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td>Приказ Управления делами Президента</td>
+							<td id="с1">Приказ Управления делами Президента</td>
 						</tr>
 						<tr>
 							<td class="prim">&nbsp;</td>
@@ -189,7 +189,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td>Российской Федерации</td>
+							<td id="с2">Российской Федерации</td>
 						</tr>
 						<tr>
 							<td class="prim">&nbsp;</td>
@@ -197,7 +197,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td id="с3">&nbsp;</td>
 						</tr>
 						<tr>
 							<td class="prim">&nbsp;</td>
@@ -205,7 +205,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td>&nbsp;</td>
+							<td id="с4">&nbsp;</td>
 						</tr>
 						<tr>
 							<td class="prim">&nbsp;</td>
@@ -218,13 +218,13 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 									<tbody class="date">
 										<tr>
 											<td class="min">от</td>
-											<td>
+											<td id="дата">
 												<xsl:if test="boolean($date/text())">
 													<xsl:value-of select="$date_full"/>
 												</xsl:if>
 											</td>
 											<td class="min">№</td>
-											<td>
+											<td id="номер">
 												<xsl:value-of select="$number"/>
 											</td>
 										</tr>

@@ -1,6 +1,6 @@
 <!--MIT License
 
-Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
+Copyright © 2020 Гришкин Максим (FFFFF@bk.ru)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -137,7 +137,14 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
     <p>Не переживай, при печати данная панель будет скрыта. </p>
     <input type="file" accept="application/xml" id="planXml" onchange="fileOnChange()"/>
     <p>P.s. Не забудь отключить колонтитулы при печати.</p>
-    <p>p.p.s. Содержание грифа утверждаю жестко закодировано.</p>
+    <p>Содержание грифа утверждения можно изменить для печати:</p>
+    <p><label><input type="text" id="is1"/>Строка 1</label></p>
+    <p><label><input type="text" id="is2"/>Строка 2</label></p>
+    <p><label><input type="text" id="is3"/>Строка 3</label></p>
+    <p><label><input type="text" id="is4"/>Строка 4</label></p>
+    <p><label><input type="text" id="idate"/>Дата</label></p>
+    <p><label><input type="text" id="inum"/>№</label></p>
+
 </div>
 <div id="result">
 
@@ -176,8 +183,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
         //IE
         if (window.ActiveXObject || "ActiveXObject" in window) {
             xhttp = new ActiveXObject("Msxml2.XMLHTTP.6.0");
-        }
-        else {
+        } else {
             xhttp = new XMLHttpRequest();
         }
         xhttp.open("GET", file_name, false);
@@ -212,6 +218,9 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
         for (let i = 0; i < len; i++) {
             target.append(sel[0]);
         }
+
+        ИнициализироватьДанные();
+        ДобавитьСлушатели();
     }
 
     function fileOnChange() {
@@ -228,8 +237,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
                 plan_xml = new ActiveXObject('Msxml2.DOMDocument.6.0');
                 plan_xml.async = false;
                 plan_xml.loadXML(reader.result);
-            }
-            else
+            } else
                 plan_xml = new DOMParser().parseFromString(reader.result, "application/xml");
 
             transformPlan(plan_xml, "result");
@@ -239,6 +247,111 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
             console.log(reader.error);
 
         };
+    }
+
+    ]]>
+</script>
+<script type="text/javascript">
+    <![CDATA[
+    const реквизиты = {
+        name: "рекв",
+        стр1: "",
+        стр2: "",
+        стр3: "",
+        стр4: "",
+        _дата: "",
+        _номер: "",
+    };
+
+    Object.defineProperty(реквизиты, "с1", {
+        get: function () {
+            return this.стр1;
+        },
+        set: function (value) {
+            this.стр1 = value;
+            document.getElementById('с1').textContent = value;
+        }
+    });
+
+    Object.defineProperty(реквизиты, "с2", {
+        get: function () {
+            return this.стр2;
+        },
+        set: function (value) {
+            this.стр2 = value;
+            document.getElementById('с2').textContent = value;
+        }
+    });
+
+    Object.defineProperty(реквизиты, "с3", {
+        get: function () {
+            return this.стр3;
+        },
+        set: function (value) {
+            this.стр3 = value;
+            document.getElementById('с3').textContent = value;
+        }
+    });
+
+    Object.defineProperty(реквизиты, "с4", {
+        get: function () {
+            return this.стр4;
+        },
+        set: function (value) {
+            this.стр4 = value;
+            document.getElementById('с4').textContent = value;
+        }
+    });
+
+    Object.defineProperty(реквизиты, "дата", {
+        get: function () {
+            return this._дата;
+        },
+        set: function (value) {
+            this._дата = value;
+            document.getElementById('дата').textContent = value;
+        }
+    });
+
+    Object.defineProperty(реквизиты, "номер", {
+        get: function () {
+            return this._номер;
+        },
+        set: function (value) {
+            this._номер = value;
+            document.getElementById('номер').textContent = value;
+        }
+    });
+
+
+    function ДобавитьСлушатели() {
+        document.getElementById('is1').addEventListener('keyup', ev => {
+            реквизиты.с1 = ev.target.value;
+        });
+        document.getElementById('is2').addEventListener('keyup', ev => {
+            реквизиты.с2 = ev.target.value;
+        });
+        document.getElementById('is3').addEventListener('keyup', ev => {
+            реквизиты.с3 = ev.target.value;
+        });
+        document.getElementById('is4').addEventListener('keyup', ev => {
+            реквизиты.с4 = ev.target.value;
+        });
+        document.getElementById('idate').addEventListener('keyup', ev => {
+            реквизиты.дата = ev.target.value;
+        });
+        document.getElementById('inum').addEventListener('keyup', ev => {
+            реквизиты.номер = ev.target.value;
+        });
+    }
+
+    function ИнициализироватьДанные() {
+        document.getElementById('is1').value = document.getElementById('с1').innerText;
+        document.getElementById('is2').value = document.getElementById('с2').innerText;
+        document.getElementById('is3').value = document.getElementById('с3').innerText;
+        document.getElementById('is4').value = document.getElementById('с4').innerText;
+        document.getElementById('idate').value = document.getElementById('дата').innerText;
+        document.getElementById('inum').value = document.getElementById('номер').innerText;
     }
 
     ]]>
