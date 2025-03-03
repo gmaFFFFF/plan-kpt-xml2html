@@ -27,7 +27,7 @@ SOFTWARE.
 В случаях любого несоответствия перевода исходному тексту лицензии
 на английском языке верным считается текст на английском языке.
 
-Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
+Copyright © 2020 Гришкин Максим (FFFFF@bk.ru)
 
 Данная лицензия разрешает, безвозмездно, лицам, получившим копию данного программного
 обеспечения и сопутствующей документации (в дальнейшем именуемыми "Программное Обеспечение"),
@@ -129,11 +129,12 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
         white-space: nowrap;
     }
 
-    /*]]>*/</style>
+    /*]]>*/
+    </style>
 </head>
 <body>
 <div class="tool">
-    <p>Выбирай xml файл с СРЗУ на КПТ. Каталог сгенирируется автоматически.</p>
+    <p>Выбирай xml файл с СРЗУ на КПТ. Каталог сгенерируется автоматически.</p>
     <p>Не переживай, при печати данная панель будет скрыта. </p>
     <input type="file" accept="application/xml" id="planXml" onchange="fileOnChange()"/>
     <p>P.s. Не забудь отключить колонтитулы при печати.</p>
@@ -179,20 +180,37 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
     })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 
     function loadXMLDoc(file_name) {
-        let xhttp;
-        //IE
-        if (window.ActiveXObject || "ActiveXObject" in window) {
-            xhttp = new ActiveXObject("Msxml2.XMLHTTP.6.0");
-        } else {
-            xhttp = new XMLHttpRequest();
-        }
-        xhttp.open("GET", file_name, false);
-        xhttp.send("");
-        return xhttp.responseXML;
+        return new Promise(function (resolve, reject) {
+            let xhttp;
+            //IE
+            if (window.ActiveXObject || "ActiveXObject" in window) {
+                xhttp = new ActiveXObject("Msxml2.XMLHTTP.6.0");
+            }
+            else {
+                xhttp = new XMLHttpRequest();
+            }
+
+            xhttp.open("GET", file_name, true);
+
+            xhttp.onload = function () {
+                if (xhttp.status === 200) {
+                    resolve(xhttp.responseXML); // Успех
+                } else {
+                    reject(new Error("Ошибка: " + xhttp.statusText)); // Ошибка
+                }
+            };
+
+            xhttp.onerror = function () {
+                reject(new Error("Ошибка сети"));
+            };
+
+            xhttp.send("");
+        });
     }
 
-    function transformXml(plan_xml) {
-        let xsl = loadXMLDoc("plan-kpt-xml2html.xsl");
+    async function transformXml(plan_xml) {
+        let xsl =  await loadXMLDoc("plan-kpt-xml2html.xsl");
+
         let result;
         // code for IE
         if (window.ActiveXObject || "ActiveXObject" in window) {
@@ -209,10 +227,10 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
         return result;
     }
 
-    function transformPlan(plan_xml, result_elem_id) {
+    async function transformPlan(plan_xml, result_elem_id) {
         let target = document.getElementById(result_elem_id);
         target.textContent = '';
-        let result = transformXml(plan_xml);
+        let result = await transformXml(plan_xml);
         let sel = result.body.childNodes;
         let len = sel.length;
         for (let i = 0; i < len; i++) {
@@ -229,7 +247,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
 
         reader.readAsText(plan_file);
 
-        reader.onload = function () {
+        reader.onload = async function () {
             let plan_xml;
 
             //IE
@@ -237,10 +255,11 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
                 plan_xml = new ActiveXObject('Msxml2.DOMDocument.6.0');
                 plan_xml.async = false;
                 plan_xml.loadXML(reader.result);
-            } else
+            }
+            else
                 plan_xml = new DOMParser().parseFromString(reader.result, "application/xml");
 
-            transformPlan(plan_xml, "result");
+            await transformPlan(plan_xml, "result");
         };
 
         reader.onerror = function () {
@@ -355,6 +374,7 @@ Copyright © 2020 Гршикин Максим (FFFFF@bk.ru)
     }
 
     ]]>
+
 </script>
 </body>
 </html>
